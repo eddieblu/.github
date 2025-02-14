@@ -33,23 +33,29 @@ Making your application interactive will require significant modifications to yo
 
 ## Mocking out functionality
 
-For parts of your application that require third party services, backend service support, or database persistence, you will need to stub, or mock, out those pieces in your JavaScript. Here are some examples of how you can stub out functionality.
+Upon completion of this deliverable your startup must be fully functional. For parts of your application that require third party services, backend service support, or database persistence, you will need to stub, or mock, out those pieces in your JavaScript. Here are some examples of how you can stub out functionality.
 
 1. **Local storage**: If you need to store credentials or game state you can use the browser's [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) until you have a database where you can store such information. Note that this data will only be available on the browser where the data was created.
    ```js
+   // This will be replaced with data service calls
    localStorage.setItem('userName', 'Tom');
    const userName = localStorage.getItem('userName');
    ```
-1. **Hard coded responses**: If you need an endpoint that provides external data such as a weather report or a LLM response you can simply hard code a single response that looks exactly like what a future endpoint will return.
+1. **Hard coded responses**: If you need an endpoint that provides external data such as a weather report or an LLM response you can simply hard code a single response that looks exactly like what a future endpoint will return.
    ```js
    function getWeather() {
+     // This will be replaced with a 3rd party service call
      return { date: '2026-05-20', outlook: 'fair' };
    }
    const weather = getWeather();
    ```
-1. **setInterval**: If you need data that would have be pushed from a server over a WebSocket for functionality such as a stock price update or a peer chat message, you can use the `setInterval` function.
+1. **setInterval**: If you need data that would have be pushed from a server over a WebSocket for functionality such as a stock price update or a peer chat message, you can use the [setInterval](../../javascript/timeoutAndInterval/timeoutAndInterval.md) function.
    ```js
-   setInterval(() => console.log('event'), 1000);
+   setInterval(() => {
+     // This will be replaced with WebSocket messages
+     const userName = `User-${Math.floor(Math.random() * 100)}`;
+     displayPeerMessage({ msg: 'Hello', from: userName });
+   }, 1000);
    ```
 
 ## Getting started
@@ -82,6 +88,7 @@ Doing this will make this deliverable of your startup available from `https://st
    1. Use React `useState` and component properties for the reactive parts of each component.
    1. Add React `useEffect` for component lifecycle events.
    1. Add JavaScript to control what gets rendered based upon the current state of the component.
+   1. Mock out a working solution for any functionality that will be implemented in a later deliverable. For example, use [setInterval](../../javascript/timeoutAndInterval/timeoutAndInterval.md) to simulate WebSocket message, or use [LocalStorage](../../javascript/localStorage/localStorage.md) for persisting user data.
 1. Make sure your name is displayed in the application and that there is a link to your GitHub repository.
 1. Periodically commit and push your code to GitHub.
 1. Periodically update your startup repository's `notes.md` file to reflect what you have learned and want to remember.
