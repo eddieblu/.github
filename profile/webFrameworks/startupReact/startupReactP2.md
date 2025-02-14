@@ -78,10 +78,10 @@ Doing this will make this deliverable of your startup available from `https://st
    1. Clone the Simon React repository to your development environment.
    1. Execute your frontend code in your development environment by running `npm run dev` from the console in the root of the project. This will automatically open your browser to https://localhost:5173. Use the browser's dev tools to step through the frontend JavaScript using the Source tab.
    1. Deploy to your production environment using the deployment script so that it is available with your domain's `simon` subdomain.
-1. Convert your startup frontend to use React. This includes:
-   1. Creating a template starting application using `vite` and cleaning up what it created.
-   1. Creating a react router that displays stubbed components for the main pieces of your application.
-   1. Converting your previous HTML files into the stubbed components.
+1. Implement the JavaScript code using the React framework to make your startup completely functional.
+   1. Use React `useState` and component properties for the reactive parts of each component.
+   1. Add React `useEffect` for component lifecycle events.
+   1. Add JavaScript to control what gets rendered based upon the current state of the component.
 1. Make sure your name is displayed in the application and that there is a link to your GitHub repository.
 1. Periodically commit and push your code to GitHub.
 1. Periodically update your startup repository's `notes.md` file to reflect what you have learned and want to remember.
@@ -97,7 +97,7 @@ Doing this will make this deliverable of your startup available from `https://st
 - **Prerequisite**: Notes in your startup Git repository `README.md` file documenting what you modified and added with this deliverable. The TAs will only grade things that have been clearly described as being completed. Review the [voter app](https://github.com/webprogramming260/startup-example) as an example.
 - **Prerequisite**: Enough Git commits to fully prove your ownership of your code. This usually means dozens of commits spread across multiple days of the deliverable development period. Failure to do this may result in the rejection of your submission.
 - Application converted to use React
-  - 70% Multiple react components that implement or mock all app functionality
+  - 70% Multiple react components that **implement or mock all app functionality**
   - 30% React `useState` and `useEffect` hooks
 
 ## Go celebrate
