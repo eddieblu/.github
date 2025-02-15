@@ -14,7 +14,8 @@ The course hosts all the repositories for the instruction and assignments. This 
 
 - 📅 [Course schedule](https://github.com/webprogramming260/.github/blob/main/profile/schedule/schedule.md)
 - 📘 [Instruction](https://github.com/webprogramming260/.github/blob/main/profile/instructionTopics.md)
-- 📱 [Simon: Demonstration web application](https://github.com/webprogramming260/.github/blob/main/profile/essentials/simon/simon.md)
+- 📱 [Simon](https://github.com/webprogramming260/.github/blob/main/profile/essentials/simon/simon.md)
+- 🚀 [Startup](https://github.com/webprogramming260/.github/blob/main/profile/essentials/startup/startup.md)
 - 💯 Assignments, quizzes, and tests are submitted through Canvas
 
 # Technologies
