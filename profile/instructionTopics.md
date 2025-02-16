@@ -7,7 +7,7 @@ The course covers a full stack of technologies including HTML, CSS, JavaScript, 
 ## Development essentials
 
 - ☑ [Course Introduction](essentials/introduction/introduction.md)
-- [Why am I here?](../essentials/whyAmIHere/whyAmIHere.md)
+- [Why am I here?](essentials/whyAmIHere/whyAmIHere.md)
 - ☑ [AWS account](essentials/awsAccount/awsAccount.md)
 - [Startup application](essentials/startup/startup.md)
 - ☑ [Demo day submission](webFrameworks/demoDay/demoDay.md)
