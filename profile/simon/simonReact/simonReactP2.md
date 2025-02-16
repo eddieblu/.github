@@ -270,7 +270,7 @@ export function Login({ userName, authState, onAuthChange }) {
 }
 ```
 
-When a player logs in, their username is stored in local storage. This serves as in indicator that the player is already authorized on future visits. In the future this will be enhanced with calls to the service to get an authorization token that verifies the authentication process.
+When a player logs in, their username is stored in local storage. This serves as an indicator that the player is already authorized on future visits. In the future this will be enhanced with calls to the service to get an authorization token that verifies the authentication process.
 
 ## Commit and test as you go
 
