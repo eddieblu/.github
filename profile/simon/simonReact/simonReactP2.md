@@ -4,6 +4,10 @@
 
 Now that we have Simon rendering using React we can implement all of the JavaScript code necessary to make the application interactive and functionally complete. We need to revisit each of the view component JSX files and implement the code that makes them interactive with the user. Some of the functionally will be mocked out until we implement the later deliverables such as the service, login, and WebSocket. However, by the time we are done with this phase everything should basically work in some way.
 
+The following will walk you through how to modify some of the Simon components so that they are reactive. You do not need to completely rewrite Simon React Phase 1 to be reactive. It is enough to clone the final [React repository](https://github.com/webprogramming260/simon-react), run it in your dev environment, study it, modify it a bit to figure out how it works, and then deploy it to your production environment.
+
+With that said you should completely understand how to take a component that is non-reactive and use JavaScript and React to make it reactive. Carefully studying the following instruction will help you gain that mastery.
+
 ## About component
 
 Let's start with the **About** component because it is the simplest. The About component is basically an `img` tag and a hard coded quote by the mighty Linus.
@@ -39,17 +43,17 @@ export function About(props) {
   }, []);
 
   return (
-    <main className="container-fluid bg-secondary text-center">
+    <main className='container-fluid bg-secondary text-center'>
       <div>
-        <div id="picture" className="picture-box">
-          <img src={imageUrl} alt="random image" />
+        <div id='picture' className='picture-box'>
+          <img src={imageUrl} alt='random image' />
         </div>
 
         <p>...</p>
 
-        <div className="quote-box bg-light text-dark">
-          <p className="quote">{quote}</p>
-          <p className="author">{quoteAuthor}</p>
+        <div className='quote-box bg-light text-dark'>
+          <p className='quote'>{quote}</p>
+          <p className='author'>{quoteAuthor}</p>
         </div>
       </div>
     </main>
@@ -93,7 +97,7 @@ import { SimonGame } from './simonGame';
 
 export function Play(props) {
   return (
-    <main className="bg-secondary">
+    <main className='bg-secondary'>
       <Players userName={props.userName} />
       <SimonGame userName={props.userName} />
     </main>
@@ -177,8 +181,8 @@ if (scores.length) {
   }
 } else {
   scoreRows.push(
-    <tr key="0">
-      <td colSpan="4">Be the first to score</td>
+    <tr key='0'>
+      <td colSpan='4'>Be the first to score</td>
     </tr>
   );
 }
@@ -208,7 +212,7 @@ The **authState** represents if the player is logged in or not. It uses the [Lif
 ```jsx
 <Routes>
   <Route
-    path="/"
+    path='/'
     element={
       <Login
         userName={userName}
@@ -228,17 +232,17 @@ The **authState** represents if the player is logged in or not. It uses the [Lif
 #### App.jsx nav menu
 
 ```jsx
-<menu className="navbar-nav">
+<menu className='navbar-nav'>
   {authState === AuthState.Authenticated && (
-    <li className="nav-item">
-      <NavLink className="nav-link" to="play">
+    <li className='nav-item'>
+      <NavLink className='nav-link' to='play'>
         Play
       </NavLink>
     </li>
   )}
   {authState === AuthState.Authenticated && (
-    <li className="nav-item">
-      <NavLink className="nav-link" to="scores">
+    <li className='nav-item'>
+      <NavLink className='nav-link' to='scores'>
         Scores
       </NavLink>
     </li>
@@ -252,7 +256,7 @@ Based on the **authState** the Login component will render either the **Authenti
 ```jsx
 export function Login({ userName, authState, onAuthChange }) {
   return (
-    <main className="container-fluid bg-secondary text-center">
+    <main className='container-fluid bg-secondary text-center'>
       <div>
         {authState !== AuthState.Unknown && <h1>Welcome to Simon</h1>}
         {authState === AuthState.Authenticated && <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />}
@@ -271,10 +275,6 @@ export function Login({ userName, authState, onAuthChange }) {
 ```
 
 When a player logs in, their username is stored in local storage. This serves as an indicator that the player is already authorized on future visits. In the future this will be enhanced with calls to the service to get an authorization token that verifies the authentication process.
-
-## Commit and test as you go
-
-That was a lot of changes and it is easy to make a mistake during the process. When you do this with your startup application, you will find it easier if you make a small change, and test that it still works. If it does, commit that change to Git. That way you can recover when things get broken before it gets out of hand.
 
 ## Study this code
 
