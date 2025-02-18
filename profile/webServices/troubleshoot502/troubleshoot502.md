@@ -2,7 +2,7 @@
 
 Deeper dive reading: [Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
-In this class you may encounter a `502` status code when you deploy either Simon or your Startup to your production environment. This error means that Caddy cannot load your HTTP service. This happens when your code is missing files, crashes when it is running, or doesn't start correctly. That causing PM2 to stop running your service.
+You may encounter a `502` status code when you deploy either Simon or your Startup to your production environment. This error means that Caddy cannot load your HTTP service. This happens when your code is missing files, crashes when it is running, or doesn't start correctly. That causing PM2 to stop running your service.
 
 In order to fix a `502` status code, you will need to ssh into your production environment and preform some troubleshooting. Below are some steps to get you started.
 
