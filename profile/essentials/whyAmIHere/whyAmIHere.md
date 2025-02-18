@@ -21,15 +21,22 @@ Motivation gives you the reason to get out of bed, invest your energy, and keep 
 
 ## Investment: What am I willing to do?
 
-Your motivation will determine your level of investment and ultimately what you will get out of it. Investment can range from minimal to immersive. For each level of motivation, there is a spectrum of possible investment. The effort required for a low level of motivation is significantly less than that for a high level of motivation.
+Your motivation will determine your level of investment and ultimately what you will get out of it. Investment can range from _minimal_ to _immersion_. For each level of motivation, there is a spectrum of possible investment. The effort required for a low level of motivation is significantly less than that for a high level of motivation.
 
-| Motivation      | Minimal              | Cursory                       | Average                             | In depth                  | Immersion                                                  |
-| --------------- | -------------------- | ----------------------------- | ----------------------------------- | ------------------------- | ---------------------------------------------------------- |
-| **Unfocused**   | Attend first day     | Skim instruction              | Read some assignment instruction    | 20% assignments           | 30% assignments                                            |
-| **Badge**       | 60% assignments      | 70% assignments               | 80% assignments                     | 93% assignments           | 100% assignments                                           |
-| **Exploration** | Skim instruction     | Read assignment instruction   | Attend class regularly              | 100% assignments          | Complete exercises                                         |
-| **Mastery**     | Complete assignments | Study instruction             | Actively participate in class       | 125% assignments          | Engage beyond instruction                                  |
-| **Leader**      | **Mastery**          | Curiosity driving exploration | Creatively exploring new directions | Collaborating with others | With humility, seeking inspiration and eternal application |
+The following rubric describes different levels of investment based upon different levels of motivation. To use the table:
+
+1. Select your target motivation from the first column.
+1. Complete all of the items in that row up to, and including, your target investment column.
+
+For example, if I wanted to `thoroughly explore`, I would skim all the instruction, study the deliverable instruction, attend class regularly, and complete 100% of the deliverables.
+
+|                 | Minimal                          | Surface                             | Familiar                          | Thorough                  | Immersion                                                  |
+| --------------- | -------------------------------- | ----------------------------------- | --------------------------------- | ------------------------- | ---------------------------------------------------------- |
+| **Unfocused**   | Only attend first day            | Skim instruction                    | Read some deliverable instruction | 20% of deliverables       | 30% of deliverables                                        |
+| **Badge**       | 60% of deliverables              | 70% of deliverables                 | 80% of deliverables               | 93% of deliverables       | 100% of deliverables                                       |
+| **Exploration** | Skim all instruction             | Study deliverable instruction       | Attend class regularly            | 100% of deliverables      | Study all instruction                                      |
+| **Mastery**     | 100% of deliverables             | Study all instruction               | Actively participate in class     | 125% of deliverables      | Engage beyond instruction                                  |
+| **Leader**      | Immersive **Mastery** investment | Creatively exploring new directions | Curiosity driving exploration     | Collaborating with others | With humility, seeking inspiration and eternal application |
 
 ## Enjoy the journey
 
@@ -41,6 +48,6 @@ If the journey feels overwhelming, pause and recall your motivation. Instead of 
 >
 > — _Attributed: Ralph Waldo Emerson_
 
-## ☑ Assignment
+## ☑ deliverable
 
 Write down your motivation and what you are willing to invest. Periodically reflect on this as the course progresses.
