@@ -6,6 +6,13 @@ You support secure authentication in a web application by first providing a way 
 
 First, let's define what each of our endpoints do by creating simple Curl commands. We can also use these commands to test the endpoints when we are done.
 
+| Endpoint     | Purpose                                          |
+| ------------ | ------------------------------------------------ |
+| Registration | Create account (create user and auth)            |
+| Login        | Log into account (create auth)                   |
+| Logout       | Logout of account (delete auth)                  |
+| Get Me       | Returns information about the authenticated user |
+
 ### Registration endpoint
 
 Given an email and password, return a cookie containing the authentication token. If the email already exists, the return 409 (conflict).
