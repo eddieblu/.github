@@ -48,7 +48,7 @@ One good way to better understand a technology is to try to rewrite it. Let's su
 
 We then overwrite the `React.useState` function to use our global color variables and provide an update function in the return value.
 
-Finally, we set an timer, using `setInterval`, to check to see if the color state has changed, and if so, update the state and rerender the component.
+Finally, we set a timer, using `setInterval`, to check to see if the color state has changed, and if so, update the state and rerender the component.
 
 ```js
 let color;
