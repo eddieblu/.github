@@ -127,7 +127,7 @@ Using the above code, use the following steps to create and start the authentica
 
 1. Create a directory called `authTest` that we will work in.
 1. Save the above content to a file named `service.js`. This is our starting web service.
-1. Run `npm install express cookie-parser uuid bcrypt` to install all of the packages we are going to use.
+1. Run `npm install express cookie-parser uuid bcryptjs` to install all of the packages we are going to use.
 1. Run `node --watch service.js` or press `F5` in VS Code to start up the web service.
 1. You can now open a console window and use `curl` to try out one of the endpoints.
 
@@ -184,12 +184,12 @@ Along with storing the user we, need to securely store our passwords. Failing to
 
 So instead of storing the password as clear text, we want to cryptographically hash the password so that we never store the actual password. When we want to validate a password during login, we can hash the login password and compare it to our stored hash of the password.
 
-To hash our passwords we will use the `bcrypt` package. This creates a very secure one-way hash of the password. If you are curious about how [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) works, it is definitely worth the time. Here is our resulting code.
+To hash our passwords we will use the `js` package. This creates a very secure one-way hash of the password. If you are curious about how [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) works, it is definitely worth the time. Here is our resulting code.
 
 ### Working create and get user functions
 
 ```js
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const users = [];
 
@@ -337,7 +337,7 @@ const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
 const uuid = require('uuid');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 app.use(express.json());
 app.use(cookieParser());

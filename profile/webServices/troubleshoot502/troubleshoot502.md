@@ -95,10 +95,10 @@ While these steps should resolve most issues, it may not resolve every issue. If
 
 - Missing `dbConfig.json` file (file not imported correctly or not located with all of the other server files)
 - Missing connection to MongoDB due to IP rules not being set to `allow access from anywhere`
-- Missing node modules: bcrypt, uuid, mongodb, express, cookie-parser
+- Missing node modules: bcryptjs, uuid, mongodb, express, cookie-parser
 
 ### Websocket
 
 - Missing `peerProxy.js` file (if using a separate file for backend websocket)
 - Incorrect path to file location of `peerProxy.js`
-- Missing node modules: ws, bcrypt, uuid, mongodb, express, cookie-parser
+- Missing node modules: ws, bcryptjs, uuid, mongodb, express, cookie-parser

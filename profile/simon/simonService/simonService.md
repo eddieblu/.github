@@ -109,12 +109,12 @@ Now that we have the service up and running, we want to replace the simple `*` e
 1. **Install required packages**. The service supports authentication tracking with cookies, representing its tokens with a universally unique ID (UUID), and cryptographically hashing password with bcrypt and so we need to install and import those NPM packages.
 
 ```sh
-npm install cookie-parser bcrypt uuid
+npm install cookie-parser bcryptjs uuid
 ```
 
 ```js
 const cookieParser = require('cookie-parser');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 ```
 
