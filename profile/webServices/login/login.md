@@ -184,7 +184,7 @@ Along with storing the user we, need to securely store our passwords. Failing to
 
 So instead of storing the password as clear text, we want to cryptographically hash the password so that we never store the actual password. When we want to validate a password during login, we can hash the login password and compare it to our stored hash of the password.
 
-To hash our passwords we will use the `js` package. This creates a very secure one-way hash of the password. If you are curious about how [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) works, it is definitely worth the time. Here is our resulting code.
+To hash our passwords we will use the `bcryptjs` package. This creates a very secure one-way hash of the password. If you are curious about how [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) works, it is definitely worth the time. Here is our resulting code.
 
 ### Working create and get user functions
 
@@ -579,7 +579,7 @@ With the backend running on port 3000, and the frontend running with the Vite ho
 
 ## Experiment
 
-You can find this complete example [here](exampleCode). To run it yourself, take the following steps:
+You can find this complete example [here](exampleCode/login). To run it yourself, take the following steps:
 
 1. Clone the repository.
 1. Run `npm install` from a console window in the example root directory.
