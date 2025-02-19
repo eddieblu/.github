@@ -475,11 +475,7 @@ Get familiar with what the example code teaches.
 
 > [!IMPORTANT]
 >
-> The `deployService.sh` deployment script is different from the previous scripts as it deploys and installs your service on your production server.
-
-> [!IMPORTANT]
->
-> The deployment script for this project is different from previous deployment scripts, since it needs to set up the Node.js service for your backend code, and copy your frontend code to the `public` directory. You also want to make sure that your Node.js HTTP service code for Simon is configured to listen on port 3000. When you deploy your Startup you want to make sure that code is configured to listen on port 4000.
+> The `deployService.sh` script for this project is different from previous deployment scripts, since it needs to set up the Node.js service for your backend code, and copy your frontend code to the `public` directory. You also want to make sure that your Node.js HTTP service code for Simon is configured to listen on port 3000. When you deploy your Startup you want to make sure that code is configured to listen on port 4000.
 
 - Deploy to your production environment using the `deployService.sh` script found in the [example class application](https://github.com/webprogramming260/simon-service/blob/main/deployService.sh). This script will bundle your React frontend application as well as build your backend application. Take some time to understand how it works.
 
