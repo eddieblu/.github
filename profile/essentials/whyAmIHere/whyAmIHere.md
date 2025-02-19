@@ -23,7 +23,7 @@ Motivation gives you the reason to get out of bed, invest your energy, and keep 
 
 Your motivation will determine your level of investment and ultimately what you will get out of it. Investment can range from _minimal_ to _immersion_. For each level of motivation, there is a spectrum of possible investment. The effort required for a low level of motivation is significantly less than that for a high level of motivation.
 
-The following rubric describes different levels of investment based upon different levels of motivation. To use the table:
+The following rubric describes different levels of investment based upon your level of motivation. To use the table:
 
 1. Select your target motivation from the first column.
 1. Complete all of the items in that row up to, and including, your target investment column.
