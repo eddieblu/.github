@@ -125,10 +125,10 @@ The course covers a full stack of technologies including HTML, CSS, JavaScript, 
 - [Account creation and login](webServices/login/login.md)
 - [Simon service](simon/simonService/simonService.md)
 - 🚀 [Startup Service](webServices/startupService/startupService.md)
-- [Development and production environments](essentials/devAndProd/devAndProd.md)
 
 ## Data and authentication services
 
+- [Deployment](essentials/deployment/deployment.md)
 - [Uploading files](webServices/uploadingFiles/uploadingFiles.md)
 - [Storage services](webServices/storageServices/storageServices.md)
 - ☑ [Data services](webServices/dataServices/dataServices.md)
