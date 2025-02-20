@@ -24,7 +24,7 @@ React abstracts HTML into a JavaScript variant called [JSX](https://reactjs.org/
 ```jsx
 const i = 3;
 const list = (
-  <ol class="big">
+  <ol class='big'>
     <li>Item {i}</li>
     <li>Item {3 + i}</li>
   </ol>
@@ -38,7 +38,16 @@ const i = 3;
 const list = React.createElement('ol', { class: 'big' }, React.createElement('li', null, 'Item ', i), React.createElement('li', null, 'Item ', 3 + i));
 ```
 
-When the browser executes the `React.createElement` JavaScript function it will generate HTML elements are displayed to the user. When a user interacts with the elements, the JavaScript code will detect that and react to change the HTML elements as defined by the JSX.
+When the JavaScript interpreter running in the browser executes the `React.createElement` functions it will generate HTML elements are displayed to the user.
+
+```html
+<ol class="big">
+  <li>Item 3</li>
+  <li>Item 6</li>
+</ol>
+```
+
+Later, we will show you how to make your code reactive to user actions such as pressing a button. Those actions will change the state of the application and cause it to rerender the HTML.
 
 ## React Hello World
 
@@ -123,10 +132,7 @@ function App() {
   };
 
   return (
-    <div
-      onClick={handleClick}
-      style={{ backgroundColor: bgColor, height: '100vh', font: 'bold 20vh Arial', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-    >
+    <div onClick={handleClick} style={{ backgroundColor: bgColor, height: '100vh', font: 'bold 20vh Arial', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div> Hello React </div>
     </div>
   );
