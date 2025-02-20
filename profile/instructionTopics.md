@@ -129,8 +129,8 @@ The course covers a full stack of technologies including HTML, CSS, JavaScript, 
 ## Data and authentication services
 
 - [Deployment](essentials/deployment/deployment.md)
-- [Uploading files](webServices/uploadingFiles/uploadingFiles.md)
 - [Storage services](webServices/storageServices/storageServices.md)
+- [Uploading files](webServices/uploadingFiles/uploadingFiles.md)
 - ☑ [Data services](webServices/dataServices/dataServices.md)
 - [Simon DB](simon/simonDb/simonDb.md)
 - 🚀 [Startup DB](webServices/startupDb/startupDb.md)
