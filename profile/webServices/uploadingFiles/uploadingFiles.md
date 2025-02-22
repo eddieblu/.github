@@ -12,13 +12,7 @@ The following frontend code registers and event handler for when the selected fi
 <html lang="en">
   <body>
     <h1>Upload an image</h1>
-    <input
-      type="file"
-      id="fileInput"
-      name="file"
-      accept=".png, .jpeg, .jpg"
-      onchange="uploadFile(this)"
-    />
+    <input type="file" id="fileInput" name="file" accept=".png, .jpeg, .jpg" onchange="uploadFile(this)" />
     <div>
       <img style="padding: 2em 0" id="upload" />
     </div>
@@ -56,7 +50,7 @@ async function uploadFile(fileInput) {
 In order to build storage support into our server, we first install the `Multer` NPM package to our project. There are other NPM packages that we can chose from, but Multer is commonly used. From your project directory, run the following console command.
 
 ```sh
-npm install multer
+npm install express multer
 ```
 
 Multer handles reading the file from the HTTP request, enforcing the size limit of the upload, and storing the file in the `uploads` directory. Additionally our service code does the following:
