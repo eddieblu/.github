@@ -37,7 +37,7 @@ async function uploadFile(fileInput) {
 
     const data = await response.json();
     if (response.ok) {
-      document.querySelector('#upload').src = `/file/${data.file}`;
+      document.querySelector('#upload').src = `/${data.file}`;
     } else {
       alert(data.message);
     }
@@ -53,11 +53,12 @@ In order to build storage support into our server, we first install the `Multer`
 npm install express multer
 ```
 
-Multer handles reading the file from the HTTP request, enforcing the size limit of the upload, and storing the file in the `uploads` directory. Additionally our service code does the following:
+Multer handles reading the file from the HTTP request, enforcing the size limit of the upload, and storing the file in the `public` directory. Additionally our service code does the following:
 
 - Handles requests for static files so that we can serve up our frontend code.
 - Handles errors such as when the 64k file limit is violated.
-- Provides a `GET` endpoint to serve up a file from the uploads directory.
+- Generates a filename that prevent the user from altering the servers file system based upon an uploaded filename.
+- Provides access to the uploads using the `express.static` middleware.
 
 ```js
 const express = require('express');
@@ -69,7 +70,7 @@ app.use(express.static('public'));
 
 const upload = multer({
   storage: multer.diskStorage({
-    destination: 'uploads/',
+    destination: 'public/',
     filename: (req, file, cb) => {
       const filetype = file.originalname.split('.').pop();
       const id = Math.round(Math.random() * 1e9);
@@ -89,10 +90,6 @@ app.post('/upload', upload.single('file'), (req, res) => {
   } else {
     res.status(400).send({ message: 'Upload failed' });
   }
-});
-
-app.get('/file/:filename', (req, res) => {
-  res.sendFile(__dirname + `/uploads/${req.params.filename}`);
 });
 
 app.use((err, req, res, next) => {
