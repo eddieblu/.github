@@ -27,6 +27,8 @@ Failing to do this will likely slow you down as you will not have the required k
 
 ## Getting started
 
+[🎥 Video tutorial](https://youtu.be/xmH_DJF7kOQ)
+
 With your startup ported to React it is time to implement all of the reactivity necessary to make your application functional. This includes writing significant JavaScript such that a user can fully interact with the application.
 
 Making your application interactive will require significant modifications to your frontend code. Make sure you reserve enough time to successfully complete this work.
