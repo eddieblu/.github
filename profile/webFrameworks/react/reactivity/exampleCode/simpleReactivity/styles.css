@@ -42,6 +42,7 @@ main {
 .page {
   color: #4f4a4a;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
