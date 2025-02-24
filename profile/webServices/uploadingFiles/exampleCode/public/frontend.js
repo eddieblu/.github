@@ -11,7 +11,7 @@ async function uploadFile(fileInput) {
 
     const data = await response.json();
     if (response.ok) {
-      document.querySelector('#upload').src = `/file/${data.file}`;
+      document.querySelector('#upload').src = `/${data.file}`;
     } else {
       alert(data.message);
     }

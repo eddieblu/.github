@@ -7,7 +7,7 @@ app.use(express.static('public'));
 
 const upload = multer({
   storage: multer.diskStorage({
-    destination: 'uploads/',
+    destination: 'public/',
     filename: (req, file, cb) => {
       const filetype = file.originalname.split('.').pop();
       const id = Math.round(Math.random() * 1e9);
@@ -27,10 +27,6 @@ app.post('/upload', upload.single('file'), (req, res) => {
   } else {
     res.status(400).send({ message: 'Upload failed' });
   }
-});
-
-app.get('/file/:filename', (req, res) => {
-  res.sendFile(__dirname + `/uploads/${req.params.filename}`);
 });
 
 app.use((err, req, res, next) => {
