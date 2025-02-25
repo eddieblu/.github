@@ -68,6 +68,53 @@ db.house.find({ $or: [(beds: { $lt: 3 }), (price: { $lt: 1000 })] });
 db.house.find({ summary: /(modern|beach)/i });
 ```
 
+## MongoDB Atlas
+
+All of the major cloud providers offer multiple data services. For this class we will use the data service provided by MongoDB called [Atlas](https://www.mongodb.com/atlas/database). No credit card or payment is required to set up and use Atlas, as long as you stick to the shared cluster environment.
+
+[MongoDB Atlas sign up](https://www.mongodb.com/atlas/database)
+
+![Mongo sign up](webServicesMongoSignUp.jpg)
+
+> [!IMPORTANT]
+>
+> This [video tutorial](https://www.youtube.com/watch?v=daIH4o75KE8) will step you through the process of creating your account and setting up your database. You really want to watch this video. Note that some of the Atlas website interface may be slightly different, but the basic concepts should all be there in some shape or form. The main steps you need to take are:
+
+1. Create your account.
+1. Create a database cluster.
+1. Create your root database user credentials. Remember these for later use.
+1. **Set network access to your database to be available from anywhere**.
+
+   ![Atlas IP Anywhere](webServicesMongoIpAnywhere.gif)
+
+1. Copy the connection string and use the information in your code.
+1. Save the connection and credential information in your production and development environments as instructed above.
+
+You can always find the connection string to your Atlas cluster by pressing the `Connect` button from your Database > DataServices view.
+
+![Atlas connection string](webServicesMongoConnection.gif)
+
+## Keeping your keys out of your code
+
+You need to protect your credentials for connecting to your Mongo database. One common mistake is to check them into your code and then post it to a public GitHub repository. Instead you can load your credentials when the application executes. One common way to do that is to have a JSON configuration file that contains the credentials that you dynamically load into the JavaScript that makes the database connection. You then use the configuration file in your development environment and deploy it to your production environment, but you **never** commit it to GitHub.
+
+In order to accomplish this do the following:
+
+1. Create a file named `dbConfig.json` in the same directory as the database JavaScript (e.g. `database.js`) that you use to make database requests.
+1. Insert your Mongo DB credentials into the `dbConfig.json` file in JSON format using the following example:
+
+   ```json
+   {
+     "hostname": "cs260.abcdefg.mongodb.net",
+     "userName": "myMongoUserName",
+     "password": "toomanysecrets"
+   }
+   ```
+
+> [!NOTE]
+>
+> Make sure you include `dbConfig.json` in your `.gitignore` file so that it does not get pushed up to GitHub.
+
 ### Using MongoDB in your application
 
 📖 **Deeper dive reading**: [MongoDB tutorial](https://www.mongodb.com/developer/languages/javascript/node-crud-tutorial/)
@@ -75,28 +122,27 @@ db.house.find({ summary: /(modern|beach)/i });
 The first step to using Mongo in your application is to install the `mongodb` package using NPM.
 
 ```sh
-➜ npm install mongodb
+mkdir testMongo && cd testMongo
+npm init -y
+npm install mongodb
 ```
 
-With that done, you then use the `MongoClient` object to make a client connection to the database server. This requires a username, password, and the hostname of the database server.
+With that done, you then import your database credentials and use the `MongoClient` object to make a client connection to the database server. This requires a username, password, and the hostname of the database server. With the client connection you can then get a database object and from that a collection object. The collection object allows you to insert, and query for, documents.
 
 ```js
 const { MongoClient } = require('mongodb');
+const config = require('./dbConfig.json');
 
-const userName = 'holowaychuk';
-const password = 'express';
-const hostname = 'mongodb.com';
-
-const url = `mongodb+srv://${userName}:${password}@${hostname}`;
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 
 const client = new MongoClient(url);
+const db = client.db('rental');
+const collection = db.collection('house');
 ```
 
-With the client connection you can then get a database object and from that a collection object. The collection object allows you to insert, and query for, documents. You do not have to do anything special to insert a JavaScript object as a Mongo document. You just call the `insertOne` function on the collection object and pass it the JavaScript object. When you insert a document, if the database or collection does not exist, Mongo will automatically create them for you. When the document is inserted into the collection it will automatically be assigned a unique ID.
+You do not have to do anything special to insert a JavaScript object as a Mongo document. You just call the `insertOne` function on the collection object and pass it the JavaScript object. When you insert a document, if the database or collection does not exist, Mongo will automatically create them for you. When the document is inserted into the collection it will automatically be assigned a unique ID.
 
 ```js
-const collection = client.db('rental').collection('house');
-
 const house = {
   name: 'Beachfront views',
   summary: 'From your bedroom to the beach, no shoes required',
@@ -134,7 +180,6 @@ You can provide a query and options to the `find` function. In the example below
 
 ```js
 const query = { property_type: 'Condo', beds: { $lt: 2 } };
-
 const options = {
   sort: { price: -1 },
   limit: 10,
@@ -149,84 +194,21 @@ The query matches the document that we previously inserted and so we get the sam
 
 There is a lot more functionality that MongoDB provides, but this is enough to get you started. If you are interested you can explore the tutorials on their [website](https://www.mongodb.com/docs/).
 
-## Managed services
-
-Historically each application development team would have developers that managed the data service. Those developers would acquire hardware, install the database software, monitor the memory, cpu, and disk space, control the data schema, and handle migrations and upgrades. Much of this work has now moved to services that are hosted and managed by a 3rd party. This relieves the development team from much of the day-to-day maintenance. The team can instead focus more on the application and less on the infrastructure. With a managed data service you simply supply the data and the service grows, or shrinks, to support the desired capacity and performance criteria.
-
-### MongoDB Atlas
-
-All of the major cloud providers offer multiple data services. For this class we will use the data service provided by MongoDB called [Atlas](https://www.mongodb.com/atlas/database). No credit card or payment is required to set up and use Atlas, as long as you stick to the shared cluster environment.
-
-![Mongo sign up](webServicesMongoSignUp.jpg)
-[MongoDB Atlas sign up](https://www.mongodb.com/atlas/database)
-
-> [!IMPORTANT]
->
-> This [video tutorial](https://www.youtube.com/watch?v=daIH4o75KE8) will step you through the process of creating your account and setting up your database. You really want to watch this video. Note that some of the Atlas website interface may be slightly different, but the basic concepts should all be there in some shape or form. The main steps you need to take are:
-
-1. Create your account.
-1. Create a database cluster.
-1. Create your root database user credentials. Remember these for later use.
-1. **Set network access to your database to be available from anywhere**.
-
-   ![Atlas IP Anywhere](webServicesMongoIpAnywhere.gif)
-
-1. Copy the connection string and use the information in your code.
-1. Save the connection and credential information in your production and development environments as instructed above.
-
-You can always find the connection string to your Atlas cluster by pressing the `Connect` button from your Database > DataServices view.
-
-![Atlas connection string](webServicesMongoConnection.gif)
-
-## Keeping your keys out of your code
-
-You need to protect your credentials for connecting to your Mongo database. One common mistake is to check them into your code and then post it to a public GitHub repository. Instead you can load your credentials when the application executes. One common way to do that is to have a JSON configuration file that contains the credentials that you dynamically load into the JavaScript that makes the database connection. You then use the configuration file in your development environment and deploy it to your production environment, but you **never** commit it to GitHub.
-
-In order to accomplish this do the following:
-
-1. Create a file named `dbConfig.json` in the same directory as the database JavaScript (e.g. `database.js`) that you use to make database requests.
-1. Insert your Mongo DB credentials into the `dbConfig.json` file in JSON format using the following example:
-
-   ```json
-   {
-     "hostname": "cs260.abcdefg.mongodb.net",
-     "userName": "myMongoUserName",
-     "password": "toomanysecrets"
-   }
-   ```
-
-1. Import the `dbConfig.json` content into your `database.js` file using a Node.js require statement and use the data that it represents to create the connection URL.
-
-   ```js
-   const config = require('./dbConfig.json');
-   const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-   ```
-
-> [!NOTE]
->
-> Make sure you include `dbConfig.json` in your `.gitignore` file so that it does not get pushed up to GitHub.
-
 ### Testing the connection on startup
 
 It is nice to know that your connection string is correct before your application attempts to access any data. We can do that when the application starts by making an asynchronous request to ping the database. If that fails then either the connection string is incorrect, the credentials are invalid, or the network is not working. The following is an example of testing the connection.
 
 ```js
-const config = require('./dbConfig.json');
-
-const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-const client = new MongoClient(url);
-const db = client.db('rental');
-
-(async function testConnection() {
-  await client.connect();
+try {
   await db.command({ ping: 1 });
-})().catch((ex) => {
-  console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+  console.log(`DB connected to ${config.hostname}`);
+} catch (ex) {
+  console.log(`Error with ${url} because ${ex.message}`);
   process.exit(1);
-});
+}
 ```
 
-If your server is not starting, then check your logs for this exception being thrown.
+If your server is not starting, then check your logs to see if an exception what thrown.
 
 ## Using Mongo from your code
 
@@ -236,58 +218,56 @@ With that all done, you should be good to use Atlas from both your development a
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+
+// Connect to the database cluster
+const client = new MongoClient(url);
+const db = client.db('rental');
+const collection = db.collection('house');
+
 async function main() {
-  // Connect to the database cluster
-  const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-  const client = new MongoClient(url);
-  const db = client.db('rental');
-  const collection = db.collection('house');
-
-  // Test that you can connect to the database
-  (async function testConnection() {
-    await client.connect();
+  try {
+    // Test that you can connect to the database
     await db.command({ ping: 1 });
-  })().catch((ex) => {
-    console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+    console.log(`DB connected to ${config.hostname}`);
+  } catch (ex) {
+    console.log(`Connection failed to ${url} because ${ex.message}`);
     process.exit(1);
-  });
+  }
 
-  // Insert a document
-  const house = {
-    name: 'Beachfront views',
-    summary: 'From your bedroom to the beach, no shoes required',
-    property_type: 'Condo',
-    beds: 1,
-  };
-  await collection.insertOne(house);
+  try {
+    // Insert a document
+    const house = {
+      name: 'Beachfront views',
+      summary: 'From your bedroom to the beach, no shoes required',
+      property_type: 'Condo',
+      beds: 1,
+    };
+    await collection.insertOne(house);
 
-  // Query the documents
-  const query = { property_type: 'Condo', beds: { $lt: 2 } };
-  const options = {
-    sort: { score: -1 },
-    limit: 10,
-  };
-
-  const cursor = collection.find(query, options);
-  const rentals = await cursor.toArray();
-  rentals.forEach((i) => console.log(i));
+    // Query the documents
+    const query = { property_type: 'Condo', beds: { $lt: 2 } };
+    const options = {
+      sort: { score: -1 },
+      limit: 10,
+    };
+    const cursor = collection.find(query, options);
+    const rentals = await cursor.toArray();
+    rentals.forEach((i) => console.log(i));
+  } catch (ex) {
+    console.log(`Database (${url}) error: ${ex.message}`);
+  } finally {
+    await client.close();
+  }
 }
 
-main().catch(console.error);
+main();
 ```
 
-To execute the above example, do the following:
-
-1. Create a directory called `mongoTest`
-1. Save the above content to a file named `index.js`
-1. Create a file named `dbConfig.json` that contains your database credentials
-1. Run `npm init -y`
-1. Run `npm install mongodb`
-1. Run `node index.js`.
-
-This should output something like the following if everything is working correctly.
+Running the above example should return something like the following if everything is working correctly.
 
 ```js
+DB connected to cs260.3452434.mongodb.net
 {
 _id: new ObjectId("639b51b74ef1e953b884ca5b"),
 name: 'Beachfront views',
@@ -302,9 +282,3 @@ beds: 1
 First, set up your MongoDB Atlas database service. Then use the instructions above. Run the example program for testing that you have things set up correctly.
 
 _If your section of this course requires that you submit assignments for grading_: Submit the hostname for your Atlas database cluster to the Canvas assignment.
-
-Here is an example hostname:
-
-```
-cs260.xiu1cqz.mongodb.net
-```

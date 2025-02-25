@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mongodb": "^6.13.1"
+  },
+  "name": "testmongo",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
