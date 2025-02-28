@@ -18,6 +18,7 @@ Before you start work on this deliverable make sure you have read all of the pro
 - [Debugging CSS](../debuggingCss/debuggingCss.md)
 - ☑ [CSS frameworks](../frameworks/frameworks.md)
 - [Simon CSS](../../simon/simonCss/simonCss.md)
+- 🎥 [Simon CSS Video](https://youtu.be/N7DVKsvUJgM)
 
 Failing to do this will likely slow you down as you will not have the required knowledge to complete the deliverable.
 

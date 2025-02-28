@@ -2,8 +2,6 @@
 
 ![Simon](../simon.png)
 
-🎥 **Instruction video**: [Simon CSS](https://youtu.be/N7DVKsvUJgM)
-
 This application deliverable demonstrates the use of basic CSS for styling and a responsive design.
 
 The addition of CSS makes our application visually appealing and adds intuitive user interface elements, but it is still not functional due to the lack of interactivity. We will add that in the next deliverable when we introduce JavaScript.

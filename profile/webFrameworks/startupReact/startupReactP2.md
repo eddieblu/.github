@@ -22,12 +22,11 @@ Before you start work on this deliverable make sure you have read all of the pro
 - ☑ [Reactivity](../react/reactivity/reactivity.md)
 - [Hooks](../react/hooks/hooks.md)
 - [Simon React P2: Reactivity](../../simon/simonReact/simonReactP2.md)
+- [🎥 Reactivity tutorial video](https://youtu.be/xmH_DJF7kOQ)
 
 Failing to do this will likely slow you down as you will not have the required knowledge to complete the deliverable.
 
 ## Getting started
-
-[🎥 Video tutorial](https://youtu.be/xmH_DJF7kOQ)
 
 With your startup ported to React it is time to implement all of the reactivity necessary to make your application functional. This includes writing significant JavaScript such that a user can fully interact with the application.
 

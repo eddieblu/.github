@@ -1,5 +1,7 @@
 # Reactivity
 
+- [🎥 Reactivity tutorial video](https://youtu.be/xmH_DJF7kOQ)
+
 Making the UI react to changes in user input or data, is one of the architectural foundations of React. React enables reactivity with three major pieces of a React component: `props`, `state`, and `render`.
 
 React keeps a **table** of `state` values for every component. React records requested state in the table whenever a `updateState` method is called. Then periodically, React will rerender every component that has had a change since the last render occurred.
@@ -25,7 +27,7 @@ function ColorPicker() {
 
       <p>
         <span>Pick a color: </span>
-        <input type="color" onChange={onChange} value={color} />
+        <input type='color' onChange={onChange} value={color} />
       </p>
     </div>
   );
@@ -101,7 +103,7 @@ function ColorPicker() {
 
       <p>
         <span>Type some text: </span>
-        <input type="text" onChange={onChange} defaultValue="red" />
+        <input type='text' onChange={onChange} defaultValue='red' />
       </p>
     </div>
   );

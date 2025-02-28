@@ -78,7 +78,7 @@ All of the major cloud providers offer multiple data services. For this class we
 
 > [!IMPORTANT]
 >
-> This [video tutorial](https://www.youtube.com/watch?v=daIH4o75KE8) will step you through the process of creating your account and setting up your database. You really want to watch this video. Note that some of the Atlas website interface may be slightly different, but the basic concepts should all be there in some shape or form. The main steps you need to take are:
+> This [video tutorial](https://youtu.be/f75muk9W-Jc) will step you through the process of creating your account and setting up your database. Note that some of the Atlas website interface may be slightly different, but the basic concepts should all be there in some shape or form. The main steps you need to take are:
 
 1. Create your account.
 1. Create a database cluster.
@@ -176,12 +176,12 @@ If you do not supply any parameters to the `find` function then it will return a
 ];
 ```
 
-You can provide a query and options to the `find` function. In the example below we query for a `property_type` of Condo that has less than two bedrooms. We also specify the options to sort by descending price, and limit our results to the first 10 documents.
+You can provide a query and options to the `find` function. In the example below we query for a `property_type` of Condo that has less than two bedrooms. We also specify the options to sort by descending **name**, and limit our results to the first 10 documents.
 
 ```js
 const query = { property_type: 'Condo', beds: { $lt: 2 } };
 const options = {
-  sort: { price: -1 },
+  sort: { name: -1 },
   limit: 10,
 };
 
@@ -248,7 +248,7 @@ async function main() {
     // Query the documents
     const query = { property_type: 'Condo', beds: { $lt: 2 } };
     const options = {
-      sort: { score: -1 },
+      sort: { name: -1 },
       limit: 10,
     };
     const cursor = collection.find(query, options);

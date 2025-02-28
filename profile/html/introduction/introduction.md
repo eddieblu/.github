@@ -2,8 +2,6 @@
 
 ![HTML Logo](htmlLogo.png)
 
-🎥 **Instruction video**: [Simon HTML](https://youtu.be/zg7eDNRMnWA)
-
 📖 **Deeper dive reading**:
 
 - [MDN HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)

@@ -2,8 +2,6 @@
 
 ![React Logo](reactLogo.png)
 
-🎥 **Instruction video**: [React introduction](https://youtu.be/R2I89JGr2TM)
-
 📖 **Recommended reading**:
 
 - [MDN React Introduction Tutorial](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started)

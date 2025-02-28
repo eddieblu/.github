@@ -11,6 +11,7 @@ Before you start work on this deliverable make sure you have read all of the pro
 - ☑ [Input](../input/input.md)
 - ☑ [Media](../media/media.md)
 - [Simon HTML](../../simon/simonHtml/simonHtml.md)
+- 🎥 [Simon HTML Video](https://youtu.be/zg7eDNRMnWA)
 
 Failing to do this will likely slow you down as you will not have the required knowledge to complete the deliverable.
 

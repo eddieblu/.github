@@ -18,7 +18,7 @@ This version of Simon calls the database service to save high scores and authori
 
 ### Create a MongoDB Atlas cluster
 
-You need to get a MongoDB Atlas account and create a database cluster that you can use as your database service. If you have not done that yet, go back and review the instruction on data services.
+You need to get a MongoDB Atlas account and create a database cluster that you can use as your database service. If you have not done that yet, go back and review the instruction on [data services](../../webServices//dataServices/dataServices.md).
 
 ### Handling database credentials
 
@@ -45,7 +45,9 @@ client.connect(err => {
 
 ## Database requests
 
-Because MongoDB was designed to represent its data in a way that is very similar to JavaScript objects, it is very easy for us to insert, update, and search for our data objects. The following shows the majority of the database calls to MongoDB.
+Because MongoDB was designed to represent its data in a way that is very similar to JavaScript objects, it is very easy for us to insert, update, and search for our data objects.
+
+The following shows the majority of the database calls to MongoDB.
 
 ```js
 function getUser(email) {

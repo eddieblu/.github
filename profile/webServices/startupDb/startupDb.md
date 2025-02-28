@@ -10,6 +10,7 @@ Before you start work on this deliverable make sure you have read all of the pro
 - [Storage services](../storageServices/storageServices.md)
 - ☑ [Data services](../dataServices/dataServices.md)
 - [Simon DB](../../simon/simonDb/simonDb.md)
+- [🎥 MongoDB Atlas setup](https://youtu.be/f75muk9W-Jc)
 
 Failing to do this will likely slow you down as you will not have the required knowledge to complete the deliverable.
 

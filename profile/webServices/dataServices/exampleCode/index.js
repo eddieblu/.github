@@ -31,7 +31,7 @@ async function main() {
     // Query the documents
     const query = { property_type: 'Condo', beds: { $lt: 2 } };
     const options = {
-      sort: { score: -1 },
+      sort: { name: -1 },
       limit: 10,
     };
     const cursor = collection.find(query, options);
