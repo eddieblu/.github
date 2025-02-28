@@ -12,35 +12,49 @@ You can view this application running here: [Example Simon DB](https://simon-db.
 
 This version of Simon calls the database service to save high scores and authorization data. This creates a third layer in our Simon technology stack.
 
-1. Frontend client application - Simple HTML/CSS/JavaScript
-1. Backend web service - Caddy, Node.js, Express
-1. Database service - MongoDB
+1. **Frontend client application** - HTML/CSS/JavaScript/React
+1. **Backend web service** - Caddy, Node.js, Express
+1. **Database service** - MongoDB
+
+![Simon DB](dataService.png)
 
 ### Create a MongoDB Atlas cluster
 
 You need to get a MongoDB Atlas account and create a database cluster that you can use as your database service. If you have not done that yet, go back and review the instruction on [data services](../../webServices//dataServices/dataServices.md).
 
-### Handling database credentials
+### Store database credentials
 
 Make sure you follow the instruction given previously about providing and protecting your MongoDB credentials in a file named `dbConfig.json`. This file will get deployed to production with the `deployService.sh` script.
 
+```json
+{
+  "hostname": "cs260.abcdefg.mongodb.net",
+  "userName": "myMongoUserName",
+  "password": "toomanysecrets"
+}
+```
+
+> [!NOTE]
+>
+> Make sure you include `dbConfig.json` in your `.gitignore` file so that it does not get pushed up to GitHub.
+
 ### Connecting to the database
 
-We use a cloud service called MongoDB Atlas for our database service. Once we are connected to Atlas, we can make service calls to MongoDB from our web service. This involves specifying the database service endpoint and making database calls like the following.
+Now you can make a connection to your MongoDB server hosted with Atlas. You also want to test your connection to make sure it is available before you start handling user requests.
 
 ```Javascript
-const { MongoClient } = require('mongodb');
-
-const url = `mongodb+srv://${userName}:${password}@${hostname}`;
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
+const db = client.db('simon');
 
-  // ... perform actions on the DB collection
-
-  client.close();
-});
-
+(async function testConnection() {
+  try {
+    await db.command({ ping: 1 });
+  } catch (ex) {
+    console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+    process.exit(1);
+  }
+})();
 ```
 
 ## Database requests
