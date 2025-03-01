@@ -117,7 +117,7 @@ In order to accomplish this do the following:
 >
 > Make sure you include `dbConfig.json` in your `.gitignore` file so that it does not get pushed up to GitHub.
 
-### Using MongoDB in your application
+## Using MongoDB in your application
 
 📖 **Deeper dive reading**: [MongoDB tutorial](https://www.mongodb.com/developer/languages/javascript/node-crud-tutorial/)
 
@@ -142,6 +142,8 @@ const db = client.db('rental');
 const collection = db.collection('house');
 ```
 
+### Insert
+
 You do not have to do anything special to insert a JavaScript object as a Mongo document. You just call the `insertOne` function on the collection object and pass it the JavaScript object. When you insert a document, if the database or collection does not exist, Mongo will automatically create them for you. When the document is inserted into the collection it will automatically be assigned a unique ID.
 
 ```js
@@ -153,6 +155,8 @@ const house = {
 };
 await collection.insertOne(house);
 ```
+
+### Query
 
 To query for documents you use the `find` function on the collection object. Note that the find function is asynchronous and so we use the `await` keyword to wait for the promise to resolve before we write them out to the console.
 
@@ -194,6 +198,24 @@ rentals.forEach((i) => console.log(i));
 
 The query matches the document that we previously inserted and so we get the same result as before.
 
+### Delete
+
+Using the a query you can delete any matching documents with the `deleteMany` function.
+
+```js
+const query = { property_type: 'Condo', beds: { $lt: 2 } };
+await collection.deleteMany(query);
+```
+
+You can also delete a single document with `deleteOne` and providing the document's ID as the query.
+
+```js
+const insertResult = await collection.insertOne(house);
+
+const deleteQuery = { _id: insertResult.insertedId };
+await collection.deleteOne(deleteQuery);
+```
+
 There is a lot more functionality that MongoDB provides, but this is enough to get you started. If you are interested you can explore the tutorials on their [website](https://www.mongodb.com/docs/).
 
 ### Testing the connection on startup
@@ -212,7 +234,7 @@ try {
 
 If your server is not starting, then check your logs to see if an exception what thrown.
 
-## Using Mongo from your code
+## Complete example
 
 With that all done, you should be good to use Atlas from both your development and production environments. You can test that things are working correctly with the following example.
 
@@ -256,6 +278,9 @@ async function main() {
     const cursor = collection.find(query, options);
     const rentals = await cursor.toArray();
     rentals.forEach((i) => console.log(i));
+
+    // Delete documents
+    await collection.deleteMany(query);
   } catch (ex) {
     console.log(`Database (${url}) error: ${ex.message}`);
   } finally {

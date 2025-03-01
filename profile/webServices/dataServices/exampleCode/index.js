@@ -37,6 +37,11 @@ async function main() {
     const cursor = collection.find(query, options);
     const rentals = await cursor.toArray();
     rentals.forEach((i) => console.log(i));
+
+    // Delete documents
+    await collection.deleteMany(query);
+
+    console.log(`Deleted ${deleteResult.deletedCount} document`);
   } catch (ex) {
     console.log(`Database (${url}) error: ${ex.message}`);
   } finally {
