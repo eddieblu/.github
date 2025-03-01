@@ -1,5 +1,7 @@
 # Data services
 
+- [🎥 MongoDB Atlas setup](https://youtu.be/f75muk9W-Jc)
+
 Web applications commonly need to store application and user data persistently. The data can be many things, but it is usually a representation of complex interrelated objects. This includes things like a user profile, organizational structure, game play information, usage history, billing information, peer relationship, library catalog, and so forth.
 
 ![Data service](dataService.png)
