@@ -65,7 +65,10 @@ async function createUser(email, password) {
 }
 
 function getUser(field, value) {
-  return users.find((user) => user[field] === value);
+  if (value) {
+    return users.find((user) => user[field] === value);
+  }
+  return null;
 }
 
 function setAuthCookie(res, user) {
