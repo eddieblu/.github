@@ -589,12 +589,12 @@ function Profile() {
 You can find this complete example [here](exampleCode/login). To run it yourself, take the following steps:
 
 1. Clone the [course instruction repository](https://github.com/webprogramming260/.github) if you haven't already.
-1. Navigate to the `profile/webServices/login/exampleCode` directory in your your command console window.
-1. Run `npm install` from a console window in the root of the project directory.
-1. Run `npm install` from a console window in the service subdirectory.
-1. Open up the code in VS Code and review what it is doing.
-1. Run and debug the example by pressing `F5` for the file `service/index.js`. You may need to select node.js as the debugger the first time you run.
-1. Run `npm run dev` from a console window in the example root directory.
-1. Open multiple browser windows and point them to http://localhost:5137.
+1. Navigate to the `profile/webServices/login/exampleCode/login` directory in your your command console window.
+1. Run `npm install` from a console window in the `exampleCode/login` directory.
+1. Run `npm install` from a console window in the `exampleCode/login/service` subdirectory.
+1. Open up the login application in VS Code and review what it is doing.
+1. Run and debug the example by pressing `F5` for the file `exampleCode/login/service/index.js`. You may need to select node.js as the debugger the first time you run.
+1. Start the frontend by running `npm run dev` from a console window.
+1. Open a browser window and point them to http://localhost:5137.
 1. Register, login, logout, and access the protected endpoint to get your user information.
 1. Use the browser's debugger to view the authentication communication.
