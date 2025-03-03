@@ -43,7 +43,7 @@
   - ESLint
   - Code Spell Checker
   - GitLens
-- Set VSCode prettier line length to 120 from default 80
+- Set VS Code prettier line length to 120 from default 80
 - Installed NVM, Node, NPM by installing NVM first and then the LTS version of Node. This was v18.13.
 
   ```sh
@@ -72,8 +72,7 @@
 
 ### Hammerspoon
 
-Install - download zip and move to Applications
-Modify ~/.hammerspoon/init.lua
+Install - download zip and move to Applications Modify ~/.hammerspoon/init.lua
 
 ```
 hs.loadSpoon("WindowHalfsAndThirds")
@@ -84,14 +83,4 @@ Copy in WindowHalfsAndThirds to ~/.hammerspoon/Spoons
 
 ### VSCode extensions
 
-GitHub Copilot
-GitLens
-Code Spell Checker
-ESLint
-GitHub Actions - Meh
-Go - If you are doing GO
-Jest - If you are in 329
-Playwright Test for VSCode - If you are in 329
-Live Server
-Markdown Preview Mermaid Support
-Tailwind CSS IntelliSense
+GitHub Copilot GitLens Code Spell Checker ESLint GitHub Actions - Meh Go - If you are doing GO Jest - If you are in 329 Playwright Test for VSCode - If you are in 329 Live Server Markdown Preview Mermaid Support Tailwind CSS IntelliSense
