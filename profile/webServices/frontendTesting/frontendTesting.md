@@ -20,66 +20,187 @@ The market now has lots of alternatives when considering which automated browser
 
 — Retention of browser based testing frameworks (**Source**: _2024.stateofjs.com_)
 
+## Demonstration application
+
 For the purposes of this instruction, we could pick any of the top contenders. However, we are going to pick a newcomer, [Playwright](https://playwright.dev/). Playwright has some major advantages. It is backed by Microsoft, it integrates really well with VS Code, and it runs as a Node.js process. It is also considered one of the least flaky of the testing frameworks.
 
-As a demonstration of using Playwright, we will use the Login application that we used to demonstrate backend testing.
+![Login App](loginApp.gif)
 
-```HTML
-<body>
-  <p id="welcome" data-testid="msg">Hello world</p>
-  <button onclick="changeWelcome()">change welcome</button>
-  <script>
-    function changeWelcome() {
-      const welcomeEl = document.querySelector('#welcome');
-      welcomeEl.textContent = 'I feel welcomed';
-    }
-  </script>
-</body>
+As a demonstration of using Playwright, we will use the [Login application](../login/exampleCode/login) that we used to demonstrate backend testing. The JSX for the application allows for the ability to provide an email and password for login or registration.
+
+```jsx
+<div>
+  <h1>Login</h1>
+  <div>
+    <label>Email:</label>
+    <input type='text' onChange={(e) => setEmail(e.target.value)} required />
+  </div>
+  <div>
+    <label>Password:</label>
+    <input type='password' onChange={(e) => setPassword(e.target.value)} required />
+  </div>
+  <button type='submit' disabled={!(email && password)} onClick={handleLogin}>
+    Login
+  </button>
+  <button type='button' disabled={!(email && password)} onClick={handleRegister}>
+    Register
+  </button>
+</div>
 ```
 
-First, you need to install Playwright. In your project directory, use NPM to download the Playwright packages, install the browser drivers, configure your project, and create a couple example test files.
+## Installing Playwright
+
+With our demonstration app created we are ready to install Playwright. When going through the installation steps, choose TypeScript, `tests` for the test directory, ignore the GitHub Actions workflow for now, and do not install any Playwright browsers.
 
 ```sh
 npm init playwright@latest
 ```
 
-Next, you want to install the Playwright extension for VS Code. Go to the extensions tab in VS Code and search for, and install, `Playwright Test for VSCode`.
+This will update `package.json` with the `playwright` package, create a `playwright.config.ts` file, and create some sample tests in the `test` and `tests-examples` directories. This will also update your `.gitignore` file so that you don't accidentally check in test coverage or report information.
 
-You can now write your first Playwright test. Take the following and paste it over the `tests/example.spec.js` file that the Playwright install created.
+### Install a testing browser
+
+Now replace the contents of the Playwright configuration file `playwright.config.ts` with the following:
+
+```js
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './tests',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: 'html',
+  timeout: 5000,
+  use: {
+    baseURL: 'http://localhost:5173',
+    trace: 'on-first-retry',
+  },
+
+  /* Configure projects for major browsers */
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'], viewport: { width: 800, height: 600 } },
+    },
+  ],
+
+  /* Run your local dev server before starting the tests */
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://localhost:5173',
+    reuseExistingServer: !process.env.CI,
+    timeout: 5000,
+  },
+});
+```
+
+This simplifies the configuration to only use the Chromium browser driver and launches the Login application when the tests run.
+
+Next, you need to install the Playwright Chromium driver with the following command.
+
+```sh
+npx playwright install --with-deps chromium
+```
+
+Finally, modify `package.json` to include a script for running playwright for your tests.
+
+```json
+"scripts": {
+  "dev": "vite",
+  "test": "playwright test"
+},
+```
+
+## Running your first test
+
+The easiest way to run your first Playwright test is to start with the examples that came with the Playwright installation.
+
+```sh
+└── tests
+    └── example.spec.ts
+
+```
+
+Playwright will run any test found in the testing directory as defined by the `testDir` property in the `playwright.config.ts` file. You chose `tests` to be the testing directory during the installation. Playwright follows the common convention of including `.spec.` in test names. You can also use `.test.` if you want to be consistent with your Jest tests.
+
+After review the provided tests, replace the tests found in `tests/example.spec.ts` with the following:
 
 ```js
 import { test, expect } from '@playwright/test';
 
-test('testWelcomeButton', async ({ page }) => {
-  // Navigate to the welcome page
-  await page.goto('http://localhost:5500/');
-
-  // Get the target element and make sure it is in the correct starting state
-  const hello = page.getByTestId('msg');
-  await expect(hello).toHaveText('Hello world');
-
-  // Press the button
-  const changeBtn = page.getByRole('button', { name: 'change welcome' });
-  await changeBtn.click();
-
-  // Expect that the change happened correctly
-  await expect(hello).toHaveText('I feel not welcomed');
+test('has title', async ({ page }) => {
+  await page.goto('http://localhost:5173');
+  await expect(page.getByRole('heading')).toContainText('Login');
 });
 ```
 
-This test makes sure you can successfully navigate to the desired page, that the page contains the desired elements, that you can press the button and the text changes as expected.
+This test navigates to the Login website and checks to make sure the resulting page has the title `Playwright`. You can run the tests from your project directory with the following console command.
 
-Before you run the test, you actually need your application running for the test to execute against. You can do this by using the VS Code Live Server extension, or if you are testing a Node.js based service then run `npm run start`. You can actually add configuration to your tests so that your application is started when your tests run, but for now, just start up your application before you run the test.
+```sh
+npm test
 
-To run the test in VS Code, select the `Test Explorer` tab. You should see your test listed in the explorer. Select the `example.spec.ts` test and press the play button. This will start the test, launch a browser, run the test code to interact with the browser, and display the result. In this case our test fails because it is expecting the resulting text to be `I feel not welcomed` when it actually displays `I feel welcomed`.
+Running 1 test using 1 worker
+  1 passed (1.4s)
+```
 
-The following image should be similar to what you see. You can see the listing of tests on the left and the JavaScript based test in the editor window on the right. When a test fails, the editor window displays a clear description of what went wrong. You can even debug the tests as they execute just like you would any other Node.js based JavaScript execution.
+**Congratulations!** You have just ran your first Playwright test. You can validate that the test is working by changing the expected text to 'Bad' instead of 'Login' and then running the test again. This time it should fail.
 
-![Playwright](javaScriptPlaywright.png)
+## Complete test
 
-You can fix the test by either changing `index.html` or `test/example.spec.js` so that the text matches. Once you have done that you can run the test again and the test explorer should display a green check box.
+Now that we are confident that we can use Playwright to run a test, let's write a more complex one that goes through the whole register/logout/login flow.
+
+```js
+import { test, expect } from '@playwright/test';
+
+function getRandomName(prefix) {
+  return `${prefix}_${Math.random().toString(36).substring(2, 15)}`;
+}
+
+test('complete flow', async ({ page }) => {
+  await page.goto('http://localhost:5173');
+  await expect(page.getByRole('heading')).toContainText('Login');
+
+  const userName = getRandomName('user');
+
+  // Register
+  await page.locator('input[type="text"]').fill(userName);
+  await page.locator('input[type="password"]').fill('toomanysecrets');
+  await page.getByRole('button', { name: 'Register' }).click();
+
+  await expect(page.getByRole('heading')).toContainText('Profile');
+  await expect(page.getByRole('main')).toContainText(`Logged in as: ${userName}`);
+
+  // Logout
+  await page.getByRole('button', { name: 'Logout' }).click();
+  await expect(page.getByRole('heading')).toContainText('Login');
+
+  // Duplicate registration
+  await page.locator('input[type="text"]').fill(userName);
+  await page.locator('input[type="password"]').fill('toomanysecrets');
+
+  page.once('dialog', async (dialog) => {
+    await expect(dialog.message()).toContain('Authentication failed');
+    dialog.dismiss().catch(() => {});
+  });
+  await page.getByRole('button', { name: 'Register' }).click();
+
+  // Login
+  await page.getByRole('button', { name: 'Login' }).click();
+
+  await expect(page.getByRole('heading')).toContainText('Profile');
+  await expect(page.getByRole('main')).toContainText(`Logged in as: ${userName}`);
+});
+```
 
 This is just a simple example of the powerful functionality of Playwright. You are encouraged to explore its functionality and even add some tests to your projects. Once you have gained some competency with Playwright you will find that you can write your code faster and feel more confident when changing things around.
+
+## VS Code Playwright extension
+
+You can use the VS Code Playwright extension to record tests using the browser, visualize what tests are passing, automatically run tests whenever your code changes, and debug a test with a click of a button.
+
+![Playwright VS Code Extension](playwrightVsCodeExtension.gif)
 
 ## Testing various devices - BrowserStack
 
