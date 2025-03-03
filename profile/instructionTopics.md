@@ -134,8 +134,8 @@ The course covers a full stack of technologies including HTML, CSS, JavaScript, 
 - ☑ [Data services](webServices/dataServices/dataServices.md)
 - [Simon DB](simon/simonDb/simonDb.md)
 - 🚀 [Startup DB](webServices/startupDb/startupDb.md)
-- [UI testing](webServices/uiTesting/uiTesting.md)
 - [Endpoint testing](webServices/endpointTesting/endpointTesting.md)
+- [UI testing](webServices/uiTesting/uiTesting.md)
 
 ## WebSocket
 
