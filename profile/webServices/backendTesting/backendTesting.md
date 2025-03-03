@@ -1,4 +1,4 @@
-# Endpoint testing
+# Backend testing
 
 Using test driven development (TDD) for testing service endpoints is a common industry practice. Testing services is usually easier than writing UI tests because it does not require a browser. However, it does still take effort to learn how to write tests that are effective and efficient. Making this a standard part of your development process will give you a significant advantage as you progress in your professional career.
 
@@ -299,7 +299,7 @@ All files   |   68.88 |    33.33 |   66.66 |   68.18 |
 Jest: "global" coverage threshold for lines (80%) not met: 68.18%
 ```
 
-You can go ahead and get practice with Jest by continue writing tests until you reach the desired target. If you don't want to go through the work yourself, you can view a [solution](exampleCode/login/service/service.test.js) that achieves 100% coverage.
+You can go ahead and get practice with Jest by continue writing tests until you reach the desired target. After putting in a good effort yourself, you can review a [solution](exampleCode) that achieves 100% coverage.
 
 ## VS Code Jest extension
 
