@@ -127,7 +127,7 @@ const uuid = require('uuid');
 1. **Create the memory data structures**. Add data structures for both the users and the scores. That means whenever the service is restarted the users and scores will be lost. When we introduce the database in a later deliverable, the data will be persistent there.
 
    ```js
-   let users = {};
+   let users = [];
    let scores = [];
    ```
 
