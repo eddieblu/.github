@@ -12,7 +12,7 @@ Before you start work on this deliverable make sure you have read all of the pro
 - [URL](../url/url.md)
 - [Ports](../ports/ports.md)
 - [HTTP](../http/http.md)
-- [Modules](javascript/modules/modules.md)
+- [Modules](../../javascript/modules/modules.md)
 - ☑ [Fetch](../fetch/fetch.md)
 - [Node web service](../nodeWebService/nodeWebService.md)
 - ☑ [Express](../express/express.md)
