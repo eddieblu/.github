@@ -15,10 +15,26 @@ console.log(increment(count));
 
 When this code executes the console will log `one1` because the count variable was accidentally initialized with a string instead of a number.
 
+## Possible types
+
+The following table defines the most common types. If you don't explicitly provide a type then it defaults to `any`. This means that it can represent any possible type. Usually you want to avoid using `any` because it defeats one of the main reasons for using TypeScript.
+
+| Type        | Description                                                               |
+| ----------- | ------------------------------------------------------------------------- |
+| `string`    | Represents textual data.                                                  |
+| `number`    | Represents numeric values, including integers and floating-point numbers. |
+| `boolean`   | Represents `true` or `false`.                                             |
+| `bigint`    | Represents large integers beyond the `number` type limit.                 |
+| `null`      | Represents an explicitly empty value.                                     |
+| `undefined` | Represents a variable that has been declared but not assigned a value.    |
+| `any`       | A dynamic type that disables type checking.                               |
+
+## Using types
+
 With TypeScript you explicitly define the types, and as the JavaScript is transpiled (with something like Babel) an error will be generate long before the code is seen by a user. To provide type safety for our increment function, it would look like this:
 
 ```ts
-function increment(value: number) {
+function increment(value: number): number {
   return value + 1;
 }
 
@@ -30,23 +46,26 @@ With TypeScript enabled, VS Code will analyze the code and give you an error abo
 
 ![TypeScript bad assignment](typescriptBadAssignment.jpg)
 
-In addition to defining types for function parameters, you can define the types of object properties. For example, when defining the state for a React class style component, you can specify the types of all the state and property values.
+In addition to defining types for function parameters, you can define the types of object. For example, when defining a _Bid_ class, you can define object types with the `type` keyword, or by implicitly creating an object property.
 
 ```ts
-export class About extends React.Component {
+type Product = {
+  imageUrl: string;
+  name: string;
+};
+
+export class Bid {
+  product: Product;
   state: {
-    imageUrl: string;
     quote: string;
     price: number;
   };
 
-  constructor(props: { price: number }) {
-    super(props);
-
+  constructor(product: Product) {
+    this.product = product;
     this.state = {
-      imageUrl: '',
       quote: 'loading...',
-      price: props.price,
+      price: 0,
     };
   }
 }
@@ -141,65 +160,84 @@ function square(n: number | string) {
 
 ## Using TypeScript
 
-If you would like to experiment with TypeScript you can use [CodePen](https://codepen.io), or the official [TypeScript playground](https://www.typescriptlang.org/play). The TypeScript playground has the advantage of showing you inline errors and what the resulting JavaScript will be.
+### Experimenting
+
+If you would like to experiment with TypeScript you can easily use [CodePen](https://codepen.io), or the official [TypeScript playground](https://www.typescriptlang.org/play). The TypeScript playground has the advantage of showing you inline errors and what the resulting JavaScript will be.
 
 ![typescript playground](typescriptPlayground.jpg)
 
-To use TypeScript in your web application you can create your project using `vite`. Vite knows how to use typescript without any additional configuration.
+### TypeScript with Vite
+
+Vite automatically supports the use of TypeScript. That means you can simply write your components with TypeScript.
+
+#### app.tsx
+
+```tsx
+import React, { JSX } from 'react';
+import ReactDOM from 'react-dom/client';
+
+interface Props {
+  greeting: string;
+  count?: number;
+}
+
+function App({ greeting, count = 3 }: Props): JSX.Element {
+  return (
+    <div>
+      {Array.from({ length: count }).map((_, index: number) => (
+        <h1 key={index}>{greeting}, World!</h1>
+      ))}
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App greeting='hello' />);
+```
+
+### TypeScript with Node.js
+
+Node LTS version 22 introduced experimental use of TypeScript with the expectation of it being enabled by default in future versions.
+
+index.ts
+
+```ts
+function add(a: number, b: number | string): number {
+  if (typeof b === 'string') {
+    b = parseInt(b, 10);
+  }
+  return a + b;
+}
+
+const x: number = 3;
+const result: number = add(x, '3');
+
+console.log(result);
+```
+
+The following will run the above code with Node.js.
 
 ```sh
-npm create vite@latest
-✔ Project name: … viteDemo
-✔ Select a framework: › React
-? Select a variant: › - Use arrow-keys. Return to submit.
-❯   TypeScript
-    TypeScript + SWC
-    JavaScript
-    JavaScript + SWC
-    Remix ↗
+node --experimental-transform-types index.ts
+
+6
 ```
+
+### Installing type bundles
+
+Some NPM packages put their type information in different packages. For example, to install the Node and React types you would execute the following.
+
+```sh
+npm install -D @types/node
+npm install -D @types/react
+```
+
+### Typescript with an existing application
 
 If you want to convert an existing application, then install the NPM `typescript` package to your development dependencies.
 
 ```sh
-npm install --save-dev typescript
+npm install -D typescript
 ```
 
 This will only include typescript package when you are developing and will not distribute it with a production bundle.
-
-Once you have TypeScript installed for your project, you then configure how you want TypeScript to interact with your code by creating a `tsconfig.json` file.
-
-If your project structure is configured to have your source code in a directory named `src`, and you want to output to a directory named `build` then you would use the following TS configuration file.
-
-```js
-{
-  "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "build",
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
-  },
-  "include": [
-    "./src/**/*"
-  ]
-}
-```
-
-To learn what all of the tsconfig.json options do, refer to [What is a tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
