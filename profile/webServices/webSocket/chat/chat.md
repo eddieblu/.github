@@ -2,13 +2,13 @@
 
 With the understanding of what the WebSocket protocol is, the basics of using it from Node and the browser, and the ability to debug the communication, it is time to use WebSocket to build a simple chat application.
 
-![WebSocket Peers](../webSocket/webServicesWebSocketPeers.jpg)
+![WebSocket chat](chat.png)
 
 In this example we will create a React frontend that uses WebSocket and displays chats between multiple users. The React code for the client will be organized similarly to Simon and your Startup. A backend Express server will forward the WebSocket communication from the different clients.
 
-## Configuring the project
+## Setting up the project
 
-Before we begin writing the code, we need to set up the React application project. We can follow the basic React setup that we discussed in the simple [Hello World React](../../webFrameworks/react/introduction/introduction.md#react-hello-world) app that we created in previous instruction. This includes:
+Before we begin writing the code, we need to set up the React application project. We can follow the basic React setup that we discussed in the simple [Hello World React](../../../webFrameworks/react/introduction/introduction.md#react-hello-world) app that we created in previous instruction. This includes:
 
 1. Creating an NPM project, installing Vite, React, and the WebSocket package.
    ```sh
@@ -16,24 +16,36 @@ Before we begin writing the code, we need to set up the React application projec
    npm install vite@latest -D
    npm install react react-dom
    ```
-1. Configuring Vite to proxy API requests through the backend when debugging.
+1. Configuring NPM to run Vite
+   ```json
+   "scripts": {
+     "dev": "vite"
+   },
+   ```
+1. Configuring Vite to proxy WebSocket requests to the backend when debugging.
 1. Creating a basic `index.html` file that loads your React application.
 1. Creating your React application in `index.jsx`.
+1. Creating your backend service in `service/service.js` and installing the `express` and `ws` packages.
+   ```sh
+   mkdir service && cd service
+   npm install express ws
+   ```
 
 ## Frontend React
 
-The frontend consists of an `index.html` file that provides an empty DOM into which React components will be injected:
+In the root of the project create all of the files representing the frontend code.
+
+This consists of our main `index.html`, `main.css`, and a `index.jsx` file that contains all the React components.
+
+#### index.html
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="stylesheet" href="main.css" />
-
     <title>Chat React</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -43,12 +55,39 @@ The frontend consists of an `index.html` file that provides an empty DOM into wh
 </html>
 ```
 
-and an `index.jsx` file that injects the top-level `<Chat/>` component:
+#### main.css
+
+```css
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fff8d8;
+}
+#chat-text {
+  padding: 1em 0;
+}
+.received {
+  color: rgb(153, 87, 148);
+  margin-left: 0.5em;
+}
+.sent {
+  color: rgb(87, 153, 117);
+}
+.system {
+  color: rgb(225, 103, 10);
+}
+.name {
+  padding: 1em 0;
+}
+```
+
+#### index.jsx
 
 ```jsx
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Chat />);
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 ```
+
+Next we add all of the React components to the `index.jsx` file.
 
 ### Chat component
 
@@ -148,15 +187,9 @@ function Conversation({ webSocket }) {
 }
 ```
 
-Security-minded developers will realize that manipulating the DOM to include user supplied data may allow any chat user to execute code in the context of the application. After you get everything working, if you are interested, see if you can exploit this weakness.
-
 ## ChatClient
 
-The `ChatClient` class manages the WebSocket in order to connect, send, and receive messages. The class is instantiated as a parameter to the Chat component.
-
-```js
-root.render(<Chat webSocket={new ChatClient()} />);
-```
+Finally we add the `ChatClient` class the `ChatClient` class manages the WebSocket in order to connect, send, and receive WebSocket messages.
 
 In order to properly handle both secure and insecure WebSocket connections the ChatClient examines what protocol is currently being used for HTTP communication as represented by the browser's `window.location.protocol` variable. If it is non-secure HTTP then we set our WebSocket protocol to be non-secure WebSocket (`ws`). Otherwise we use secure WebSocket (`wss`). With the correct protocol in hand, we then connect the WebSocket to the same location that we loaded the HTML from by referencing the `window.location.host` variable.
 
@@ -213,6 +246,15 @@ class ChatClient {
 }
 ```
 
+### Load the app component
+
+You complete the frontend code by loading the `Chat` component into the DOM and pass it a WebSocket `ChatClient`.
+
+```js
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Chat webSocket={new ChatClient()} />);
+```
+
 ## Backend chat server
 
 The chat server runs the web service, serves up the client code, manages the WebSocket connections, and forwards messages from the peers.
@@ -226,9 +268,11 @@ npm install express ws
 
 Then we create a file named `service.js` and add our service code.
 
-### Web service
+### Web and WebSocket service
 
-The web service HTTP communication is facilitated by using a simple Express configuration. Note that we serve up our frontend using the `static` middleware from the public directory.
+The web service HTTP communication is facilitated by using a simple Express configuration.
+
+When we create our WebSocket object, we simply provide our Express HTTP server object in the constructor. This allows the WebSocket code to intercept WebSocket upgrade requests and process future WebSocket messages.
 
 ```js
 const { WebSocketServer } = require('ws');
@@ -239,16 +283,6 @@ const app = express();
 app.use(express.static('./public'));
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
-server = app.listen(port, () => {
-  console.log(`Listening on ${port}`);
-});
-```
-
-### WebSocket server
-
-When we create our WebSocket object, we simply provide our Express HTTP server object in the constructor. This allows the WebSocket code to intercept WebSocket upgrade requests and process future WebSocket messages.
-
-```js
 server = app.listen(port, () => {
   console.log(`Listening on ${port}`);
 });
@@ -295,7 +329,7 @@ setInterval(() => {
 
 ## Vite.config.js
 
-When debugging, the vite.config.js file in the root directory is configured to route websocket traffic from port 5137 (where Vite is serving the frontend) to port 3000 (where the backend is listening for chat traffic). We have seen something similar before when we used Vite to reroute our service endpoints while debugging in our development environment. This configuration is only used for debugging during development and is not used in our production environment. Since we only use the insecure WebSocket protocol (ws) when debugging we only proxy that protocol in this configuration.
+When debugging, the `vite.config.js` file in the root directory is configured to route websocket traffic from port 5137 (where Vite is serving the frontend) to port 3000 (where the backend is listening for chat traffic). We have seen something similar before when we used Vite to reroute our service endpoints while debugging in our development environment. This configuration is only used for debugging during development and is not used in our production environment. Since we only use the insecure WebSocket protocol (ws) when debugging we only proxy that protocol in this configuration.
 
 ```js
 import { defineConfig } from 'vite';
@@ -320,7 +354,7 @@ You can find this complete example [here](exampleCode). To run it yourself, take
 1. Run `npm install` from a console window in the example root directory.
 1. Run `npm install` from a console window in the example service subdirectory.
 1. Open up the code in VS Code and review what it is doing.
-1. Run and debug the example by pressing `F5` for the file `service/index.js`. You may need to select node.js as the debugger the first time you run.
+1. Run and debug the example by pressing `F5` for the file `service/index.js`. You may need to select Node as the debugger the first time you run.
 1. Run `npm run dev` from a console window in the example root directory.
 1. Open multiple browser windows and point them to http://localhost:5137.
 1. Provide a user name and start chatting.

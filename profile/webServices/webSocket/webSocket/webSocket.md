@@ -8,11 +8,13 @@ For years, web developers created hacks to work around the limitation of the cli
 
 Finally, in 2011 the communication protocol WebSocket was created to solve this problem. The core feature of WebSocket is that it is fully duplexed. This means that after the initial connection is made from a client, using vanilla HTTP, and then upgraded by the server to a WebSocket connection, the relationship changes to a peer-to-peer connection where either party can efficiently send data at any time.
 
-![WebSocket Upgrade](webServicesWebSocketUpgrade.jpg)
+![WebSocket Upgrade](webSocketUpgrade.png)
+
+This enables the server to send notifications to the client, or for the client and server to have an asynchronous exchange of information.
 
 WebSocket connections are still only between two parties. So if you want to facilitate a conversation between a group of users, the server must act as the intermediary. Each peer first connects to the server, and then the server forwards messages amongst the peers.
 
-![WebSocket Peers](webServicesWebSocketPeers.jpg)
+![WebSocket Peers](WebSocketPeers.png)
 
 ## Creating a WebSocket conversation
 
@@ -30,10 +32,10 @@ socket.onmessage = (event) => {
   console.log('received: ', event.data);
 };
 ```
+
 and, you can send messages using the `send` function:
 
 ```js
-
 socket.send('I am listening');
 ```
 
@@ -44,7 +46,7 @@ When a connection is detected it calls the server's `on connection` callback. Th
 ```js
 const { WebSocketServer } = require('ws');
 
-const wss = new WebSocketServer({ port: 9900 });
+const wss = new WebSocketServer({ port: 3000 });
 
 wss.on('connection', (ws) => {
   ws.on('message', (data) => {

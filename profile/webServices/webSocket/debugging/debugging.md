@@ -14,7 +14,7 @@ You can debug both sides of the WebSocket communication with VS Code to debug th
    ```js
    const { WebSocketServer } = require('ws');
 
-   const wss = new WebSocketServer({ port: 9900 });
+   const wss = new WebSocketServer({ port: 3000 });
 
    wss.on('connection', (ws) => {
      ws.on('message', (data) => {
@@ -35,7 +35,7 @@ You can debug both sides of the WebSocket communication with VS Code to debug th
 
 ## Debugging the client
 
-1. Open a Chrome browser, point it at `localhost:9900` and then open the debugger by pressing `F12`.
+1. Open a Chrome browser, point it at `localhost:3000` and then open the debugger by pressing `F12`.
 1. Paste this code into the debugger console window and press enter to execute it. Executing this code will immediately hit the server breakpoint. Take a look at what is going on and then remove the breakpoint from the server.
 
    ```js
