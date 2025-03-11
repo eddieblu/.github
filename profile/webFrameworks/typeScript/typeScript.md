@@ -122,7 +122,7 @@ Notice that in the above example, the return type is coerced for the `querySelec
 
 ### Unions
 
-TypeScript introduces the ability to define the possible values for a new type. This is useful for doing things like defining an enumerable.
+TypeScript introduces the ability to define the possible values for a new type. This is useful for doing things like defining an enumerable or possible types.
 
 With plain JavaScript you might create an enumerable with a class.
 
@@ -156,6 +156,19 @@ function square(n: number | string) {
     console.log(n * n);
   }
 }
+```
+
+### Enum
+
+TypeScript also supports enumerations. This adds the benefit of using symbols instead of strings for values.
+
+```ts
+enum AuthState {
+  Authenticated = 'authenticated',
+  Unauthenticated = 'unauthenticated',
+}
+
+let auth: AuthState = AuthState.Authenticated;
 ```
 
 ## Using TypeScript
