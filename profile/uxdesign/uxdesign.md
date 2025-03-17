@@ -26,7 +26,7 @@ Previous to that, it was common for app designers to pile everything they could 
 
 > Source: Lycos.com 1999
 
-The key point of this example is that simplicity attracts users' attention and engages them in the application experience. Building off of Google's positive reaction, other major applications immediately followed their example. Here is the initial experience when visiting facebook's application for the first time. Notice that it simply states the purpose of the application and invites the user to create an account.
+The key point of this example is that simplicity attracts a user's attention and engages them in the application experience. Building off of Google's positive reaction, other major applications immediately followed their example. Here is the initial experience when visiting facebook's application for the first time. Notice that it simply states the purpose of the application and invites the user to create an account.
 
 ![Simplicity](designSimplicityFB.jpg)
 
@@ -69,7 +69,7 @@ A user should never get lost while using your application. To help orient your u
 
 The first step in building your application should be to design an application map that has all the views that you will present to the user. This helps clarify the functional pieces of the application and their relationship to each other. For example, if you were building a music player you might start with a landing page that displays some marketing information and allows the user to create an account or log in. If the user is already logged in, then they start with a dashboard that shows recent or suggested songs. From there they can either search the music catalog, navigate to a collection of songs based on a playlist, album, or artist, or go to an individual song.
 
-![Application map](designSitemap.jpg)
+![Application map](designSitemap.png)
 
 If your application map starts looking like a governmental bureaucracy then you probably want to reconsider the interrelation of functionality. A convoluted application map is a strong indicator that the user experience with be likewise convoluted.
 
@@ -156,15 +156,22 @@ There are lots of standard icon packages that you can choose from. This includes
 
 ## Text
 
-You want to be consistent in the size of the text that you use as well as the number of characters displayed on a line. Commonly there are five different catagories of text sizes used by an application. These include the following.
+You want to be consistent in the size of the text that you use as well as the number of characters displayed on a line. Commonly there are five different categories of text sizes used by an application. These include the following.
 
-| Purpose        | Size     |
-| -------------- | -------- |
-| Page title     | 96 px    |
-| Titles         | 48-20 px |
-| Text           | 16 px    |
-| Secondary text | 14 px    |
-| Input          | 16 px    |
+# UX-Optimized Font Sizes
+
+| Element                  | Best Practice Size                         |
+| ------------------------ | ------------------------------------------ |
+| **Page Title** (H1)      | **72px** (Large but not overwhelming)      |
+| **Main Titles** (H2)     | **42px** (Prominent but readable)          |
+| **Subtitles** (H3)       | **32px**                                   |
+| **Section Titles** (H4)  | **26px**                                   |
+| **Smaller Titles** (H5)  | **22px**                                   |
+| **Smallest Titles** (H6) | **18px**                                   |
+| **Body Text** (P)        | **18px** (Optimal readability)             |
+| **Secondary Text**       | **16px**                                   |
+| **Form Labels & Input**  | **18px** (Matches body text for usability) |
+| **Button Text**          | **18px**                                   |
 
 These sizes are just suggestions but they serve as a good place to start. If you are using an application framework then they will have default text sizes defined. The important thing is that you are consistent with the sizing. Titles should not be one size for a particular view and a different size on another one. Inconsistency confuses the user and makes the application feel haphazardly designed.
 
