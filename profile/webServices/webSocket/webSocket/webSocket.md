@@ -18,7 +18,7 @@ This enables the server to send notifications to the client, or for the client a
 
 WebSocket connections are still only between two parties. So if you want to facilitate a conversation between a group of users, the server must act as the intermediary. Each peer first connects to the server, and then the server forwards messages amongst the peers.
 
-![WebSocket Peers](WebSocketPeers.png)
+![WebSocket Peers](webSocketPeers.png)
 
 ## Creating a WebSocket conversation
 
