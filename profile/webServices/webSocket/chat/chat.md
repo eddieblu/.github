@@ -12,6 +12,7 @@ Before we begin writing the code, we need to set up the React application projec
 
 1. Creating an NPM project, installing Vite, React, and the WebSocket package.
    ```sh
+   mkdir chatDemo && cd chatDemo
    npm init -y
    npm install vite@latest -D
    npm install react react-dom
