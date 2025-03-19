@@ -260,14 +260,7 @@ root.render(<Chat webSocket={new ChatClient()} />);
 
 The chat server runs the web service, serves up the client code, manages the WebSocket connections, and forwards messages from the peers.
 
-To get started we create a subdirectory named `service` and install the Express and WebSocket NPM packages.
-
-```sh
-mkdir service && cd service
-npm install express ws
-```
-
-Then we create a file named `service.js` and add our service code.
+To get started with the backend code we create a file named `service.js` in the `service` directory.
 
 ### Web and WebSocket service
 
