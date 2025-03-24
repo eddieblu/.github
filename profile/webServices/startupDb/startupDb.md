@@ -47,15 +47,9 @@ Doing this will make this deliverable of your startup available from `https://st
    1. Open your browser to https://localhost:3000 and use the browser's dev tools to step through the frontend JavaScript using the Source tab.
    1. Deploy to your production environment using the deployment script so that it is available with your domain's `simon` subdomain.
 1. Add code for connecting to the database
-1. Provide endpoints for adding, updating, and deleting your application data in the database
+1. Modify/create endpoints for adding, updating, reading, and deleting your application data (including encrypted credentials) so that they utilize the database instead of local storage on your server.
 1. Persist data in MongoDB.
 1. Display the user data in the frontend by manipulating the DOM.
-1. Allow new users to create accounts by providing credentials
-1. Store encrypted credentials in your database
-1. Allow existing users to provide credentials
-1. Allow existing users to logout
-1. Authenticate users by comparing provided credentials against those stored in the database
-1. Restrict access to parts of the application that require authorization
 1. Debug your application using VS Code's Node debugger and the browser's dev tools, in your development environment to verify it is working correctly.
 1. Periodically commit and push your code to GitHub.
 1. Periodically update your startup repository's notes.md file to reflect what you have learned and want to remember.
