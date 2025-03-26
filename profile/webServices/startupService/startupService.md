@@ -86,6 +86,10 @@ For example,
 
 Doing this will make this deliverable of your startup available from `https://startup.yourdomainname`.
 
+> [!NOTE]
+>
+> If after your deployed your startup to your production environment the browser displays a `502` error you should consult the [instruction](../troubleshoot502/troubleshoot502.md) on resolving this error. Most likely the problem is that you do not have the required project structure or you are installing your NPM dependencies to the wrong application `package.json`.
+
 ## 🚀 Deliverable
 
 1. Review and deploy Simon Service
