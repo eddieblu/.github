@@ -38,7 +38,7 @@ The purpose of having you specify how you are going to use the technologies is s
 - **Service** - Backend server functionality for the following:
   - Multiple endpoints (server function calls) that provide functionality necessary to support your application. For example, storing scores, retrieving user preferences, or generating dynamic content.
   - Login, logout, and register user support.
-  - At least one call to a third party (e.g. that you didn't write) service endpoint to do something like suggest a color pallette, get a joke, get the weather, or get images. You can view a list of APIs here: [https://github.com/public-apis/public-apis](https://github.com/public-apis/public-apis).
+  - At least one call to a third party (e.g. that you didn't write) service endpoint to do something like suggest a color pallette, get a joke, get the weather, or get images. You can view a list of APIs here: [https://github.com/public-apis/public-apis](https://github.com/public-apis/public-apis). You can make most services work, but the easiest ones to use don't require authentication, support CORS, and require HTTPS.
 - **Database**: A rendering of application data that is stored in the database. For Simon, this is the high scores of all players.
 - **WebSocket**: A rendering of data that is received from your server. This may be **realtime** data sent from other users (e.g. chat or scoring data), or realtime data that your service is generating (e.g. stock prices or latest high scores). For Simon, this represents every time another user creates or ends a game.
 

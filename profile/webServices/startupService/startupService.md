@@ -27,7 +27,12 @@ Failing to do this will likely slow you down as you will not have the required k
 
 ## Getting started
 
-Now that you have learned how to use and create services, it is time to add backend support to your startup application. The main things you should focus on in this deliverable include serving up your frontend code through Node.js, calling third party services, and providing your own service endpoints.
+Now that you have learned how to use and create services, it is time to add backend support to your startup application. The main things you should focus on in this deliverable includes:
+
+1. Calling a third party service from your frontend.
+1. Creating a backend service using Node.js.
+1. Providing authentication endpoints from your backend service.
+1. Providing application endpoints from your backend service.
 
 You must use the same startup GitHub repository that you created in the earlier instruction. Update the `notes.md` file with things that you learn as you work on your startup. As you make changes to your HTML, CSS, and JavaScript, commit those changes and push them to GitHub. Make sure you have enough commits that you can demonstrate your ownership of the code and protect yourself from loss. Usually this will mean at least ten commits, but in reality you may have many more than that. Failing to fully document your work may result in the rejection of your submission.
 
@@ -35,7 +40,35 @@ Remember to use the browser's debugger window to debug your frontend HTML, CSS a
 
 ## Third party APIs
 
-You can find a list of free third party APIs on [FreePublicApis.com](https://www.freepublicapis.com/).
+You can find a list of free third party APIs on [GitHub](https://github.com/public-apis/public-apis). You can make most services work, but the easiest ones to use don't require authentication, support CORS, and require HTTPS.
+
+![APIs](publicApis.png)
+
+## Creating your backend service
+
+In order to follow the pattern that Simon demonstrates and the deployment script expects you **must** organize your source code with the following structure:
+
+```sh
+.                    // Project root
+├── deployService.sh
+├── .gitignore
+├── index.html       // Frontend application code
+├── index.jsx
+├── package.json     // Frontend NPM package configuration
+├── public
+│   └── *            // Images and other static files your frontend uses
+├── src
+│   └── *            // Frontend React source code files
+├── vite.config.js   // Config to route API calls when debugging
+│
+└── service          // Backend service code
+    ├── index.js
+    └── package.json // Backend NPM package configuration
+```
+
+Note that you now have _two applications_ represented in your Git repository. The frontend code in the root of the project, and the backend code in the `service` directory. Each of these applications must have their own NPM configuration as represented by the `package.json` file.
+
+When you install NPM packages for your front or backend code, make sure you do your `NPM install` in the proper directory. If you put your backend dependencies in your frontend package.json your application will not deploy properly and you will see 502 errors.
 
 ## Deployment
 
@@ -61,17 +94,26 @@ Doing this will make this deliverable of your startup available from `https://st
       ```
       git clone https://github.com/webprogramming260/simon-service.git
       ```
-   1. Run `npm install` in the root of the project.
+   1. Run `npm install` in the root of the project to install the frontend dependencies.
+   1. Run `npm install` in the `service` directory to install the backend dependencies.
    1. Open the project in VS Code and examine the application's use of Node.js, Express, and JavaScript to create service endpoints.
    1. Execute in your development environment by debugging the application using VS Code's Node.js debugger (press F5 while viewing `index.js`). Set breakpoints in VS Code and step through the backend JavaScript.
-   1. Start your frontend code using Vite by running `npm run dev`.
+   1. Start your frontend code using Vite by running `npm run dev` in the root of the project.
    1. Open your browser to http://localhost:5173 and use the browser's dev tools to step through the frontend JavaScript using the Source tab.
    1. Deploy to your production environment using the deployment script so that it is available with your domain's `simon` subdomain.
 
 1. Convert your startup application into a web service using Node.js and Express.
 
+   1. Create a `service` directory for your backend application and install the dependencies you need.
+
+      ```sh
+      mkdir service && cd service
+      npm init -y
+      npm install express cookie-parser bcryptjs uuid
+      ```
+
    1. Create a service/index.js file for your backend
-   1. Add this code to service/index.js to allow your code to select a port to run on based on the command line parameters.
+   1. Add this code to service/index.js to allow your code to select a port to run on based on the command line parameters. You **must** use port 4000 for your backend service.
       ```js
       const port = process.argv.length > 2 ? process.argv[2] : 4000;
       ```
