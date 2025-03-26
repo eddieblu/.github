@@ -21,10 +21,11 @@ The key to learning how to be an exceptional software engineer rests in your abi
 >
 > — Tim Cook, ([source](https://appleinsider.com/articles/22/10/03/if-you-want-to-work-for-apple-you-need-these-four-traits))
 
-## Thinking Celestial
+## Christlike learning
 
 By developing and utilizing software engineering skills you can have a significant impact for good. However, you can take this to a whole new level by learning additional principles.
 
+1. **Gratitude** - Approach you study with eternal gratitude and humility. This allows you to be teachable.
 1. **Divine Inspiration** - Seeking for divine help and direction in your efforts, enables you to avoid paths that would otherwise diminish your impact, and instead create results that otherwise would have been beyond your abilities.
 1. **Eternal Perspective** - If you look beyond a project due date, problem to solve, diploma, employer, career, or even this mortal existence, you will find your focus gravitating towards a purpose that is guided by the eternal rather than the moment.
 
