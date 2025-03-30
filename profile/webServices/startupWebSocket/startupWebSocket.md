@@ -6,9 +6,9 @@
 
 Before you start work on this deliverable make sure you have read all of the proceeding instruction topics and have completed all of the dependant exercises (topics marked with a ☑). This includes:
 
-- [WebSocket](../webSocket/webSocket.md)
-- [Debugging WebSocket](../webSocket/debugging.md)
-- [WebSocket chat](../webSocket/chat.md)
+- [WebSocket](../webSocket/webSocket/webSocket.md)
+- [Debugging WebSocket](../webSocket/debugging/debugging.md)
+- [WebSocket chat](../webSocket/chat/chat.md)
 - [Simon WebSocket](../../simon/simonWebSocket/simonWebSocket.md)
 
 Failing to do this will likely slow you down as you will not have the required knowledge to complete the deliverable.
