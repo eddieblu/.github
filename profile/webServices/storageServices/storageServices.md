@@ -23,7 +23,7 @@ Here is a table of major cloud storage providers that offer programmatic access,
 
 ## AWS S3
 
-Since we are already using AWS for this course, Let's take a closer look at [AWS S3](https://aws.amazon.com/s3/). S3 provides the following advantages:
+Since we are already using AWS for this course, let's take a closer look at [AWS S3](https://aws.amazon.com/s3/). S3 provides the following advantages:
 
 1. It has unlimited capacity
 1. You only pay for the storage that you use
