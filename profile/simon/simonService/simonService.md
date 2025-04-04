@@ -267,7 +267,7 @@ const uuid = require('uuid');
 
 ### Secure endpoints
 
-With the addition of authentication functionality we can restrict the access to endpoints using a simple Express middleware technique. The following code creates a middleware function named `verifyAuth` that gets the requesting user's authentication cooking. If there is a user that matches the cookie then it allows the HTTP request to continue to the next middleware handler. Otherwise it will fail the request with a 401 (unauthorized) HTTP status code.
+With the addition of authentication functionality we can restrict the access to endpoints using a simple Express middleware technique. The following code creates a middleware function named `verifyAuth` that gets the requesting user's authentication cookie. If there is a user that matches the cookie then it allows the HTTP request to continue to the next middleware handler. Otherwise it will fail the request with a 401 (unauthorized) HTTP status code.
 
 ```js
 // Middleware to verify that the user is authorized to call an endpoint
