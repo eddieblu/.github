@@ -342,7 +342,7 @@ async function saveScore(score) {
 }
 ```
 
-The scores are loaded in `scores/scores.jxs` where we use a React useEffect hook to reactively display the scores once they are loaded from the service.
+The scores are loaded in `scores/scores.jsx` where we use a React useEffect hook to reactively display the scores once they are loaded from the service.
 
 ```jsx
 React.useEffect(() => {
