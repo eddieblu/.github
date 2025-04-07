@@ -69,7 +69,7 @@ Doing this will make this deliverable of your startup available from `https://st
   - 20% - Frontend makes WebSocket connection
   - 20% - Data sent over WebSocket connection
   - 20% - WebSocket data displayed in the application interface
-  - 20% - All visible elements are working - Some of your application functionality has been mocked up in previous version of the startup. Your application should feel fully functional.
+  - 20% - The application is fully functional. There are no mocks or placeholder features.
 
 ## Go celebrate
 
