@@ -190,7 +190,7 @@ function Conversation({ webSocket }) {
 
 ## ChatClient
 
-Finally we add the `ChatClient` class the `ChatClient` class manages the WebSocket in order to connect, send, and receive WebSocket messages.
+Finally we add the `ChatClient` class. The `ChatClient` class manages the WebSocket in order to connect, send, and receive WebSocket messages.
 
 In order to properly handle both secure and insecure WebSocket connections the ChatClient examines what protocol is currently being used for HTTP communication as represented by the browser's `window.location.protocol` variable. If it is non-secure HTTP then we set our WebSocket protocol to be non-secure WebSocket (`ws`). Otherwise we use secure WebSocket (`wss`). With the correct protocol in hand, we then connect the WebSocket to the same location that we loaded the HTML from by referencing the `window.location.host` variable.
 
